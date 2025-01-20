@@ -59,9 +59,8 @@ Velocity Rush is a 3D endless runner game designed for android and webgl and itâ
   #### [User Testing Video]
   https://youtu.be/7UuQ2rcpN-A
   #### [LeaderBoard Testing Video]
+  https://www.youtube.com/watch?v=HpXlYbRmdug
 
-
-  
 ### Main Code Snippets 
 - #### RoadManager 
   - Road Spawning 
