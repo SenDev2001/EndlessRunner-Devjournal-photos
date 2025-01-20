@@ -1,15 +1,15 @@
-# GAME PROJECT 
+## GAME PROJECT
  #### GAME ENGINE PROGRAMING AND DEVELOPMENT 
  #### KURANAGE SENITH MADUSHAN PEREREA 
  #### 2412587
 
-# VELOCITY RUSH 
-- ### Game Link 
-- ### GitHub Repository Link
-
+# VELOCITY RUSH
+- ### Game URL
+- ### GitHub URL: https://github.com/SenDev2001/Game-Project.git
+- ### Gameplay Video:
 
 ## INTRODUCTION
-Velocity Rush is a 3D endless runner game designed for android and webgl and it’s made for the winter season environment and player have run through road while snow falling and avoid obstacles and collecting coins also velocity rush has leaderboard system so players can see names and score what they got and whose got high score.
+Velocity Rush is a 3D endless runner game designed for android and webgl and it’s made for the winter season environment and player have run through road while snow falling and avoid obstacles and collecting coins also velocity rush has leaderboard system so players can see names and score what they got and whose got high score. And the highest score show in top in the leaderboard. 
 ## RESEARCH 
 - I have done research subway surface case study to better understand its gaming mechanics and design components, which may inspire and lead the development of my own game. I looked at key elements including endless runner gameplay the necessity of user input, and the usage dynamic challenges. This case study helped me grasp the fundamental features of a successful mobile game, such as level design, coins, player movements and obstacles which I want to include to my project.
   - References - Subway Surfers case study (s.d.) At: https://unity.com/case-study/subway-surfers (Accessed 03/12/2024).
@@ -20,7 +20,7 @@ Velocity Rush is a 3D endless runner game designed for android and webgl and it�
 - I looked at documentation in unity input systems for mobile. The unity input system literature version 1.11.2 provided a detailed description of how to configure and implement touch controllers, multi touch gestures and swipe recognition on mobile devices.
   -  References - Input System | Input System | 1.11.2 (s.d.) At: https://docs.unity3d.com/Packages/com.unity.inputsystem@1.11/manual/index.html (Accessed 03/12/2024).
 
-- I followed YouTube videos to understand swipe detection for my first mobile game velocity rush. These tutorials demonstrated how to create swipe detection for touch and mouse inputs in unity’s new input system. I learnt how to detect directional swipes, analyse input data and combine swipe actions into game mechanism. In addition, I learnt visual upgrades such as trail effects to improve the user experience. This understanding allowed me to develop responsive and accurate swipe controls, resulting in intuitive gameplay. These elements are essential for mobile games, since they increase play interest and correspond with the main dynamics of and endless runner game.
+- I followed YouTube videos to understand swipe detection for my first mobile game velocity rush. These tutorials demonstrated how to create swipe detection for touch and mouse inputs in unity’s new input system. I learnt how to detect directional swipes, analyse input data and combine swipe actions into game mechanism. In addition, I learnt visual upgrades such as trail effects to improve the user experience. This understanding allowed me to develop responsive and accurate swipe controls, resulting in intuitive gameplay. First I used old unity input system after I change it to new unity input system because its good for cross platform controls and also it has smooth swipe detection. These elements are essential for mobile games, since they increase play interest and correspond with the main dynamics of and endless runner game.
   - References - detect Swipe NEW Input system (touch / mouse) | how to detect swipe in unity with New Input system (2022) At: https://www.youtube.com/watch?v=Xm9_rcmv3UU (Accessed 03/12/2024). Swipe Detection + Trail Effect w/ New Input System - Unity Tutorial (2021) At: https://www.youtube.com/watch?v=XUx_QlJpd0M (Accessed 03/12/2024).Swipe Detection + Trail Effect w/ New Input System - Unity Tutorial - YouTube (s.d.) At: https://www.youtube.com/watch?v=XUx_QlJpd0M (Accessed  12/12/2024).
 
 
@@ -43,19 +43,27 @@ Velocity Rush is a 3D endless runner game designed for android and webgl and it�
 - #### Gameplay Design: 
   - I started by researching current endless runner games to learn about effective game mechanism. I concentrated on creating important gameplay elements such as player movement, swipe gestures, obstacle avoidance (add road barriers and busses), and snow partials.
   #### [Game Scene Screenshots] 
-- #### Mobile Controls: 
-  - I used unity’s new input System to build touch and swipe detection for seamless player interactions. 
-#### [Mobile Game Screenshots]
-<img src="Screenshot 2025-01-19 225907.png" alt="Alt text" width="300" height="200">
+  - Menu Scene
+  - Game Scene
 
+- #### Mobile & WEBGL/PC Controls: 
+  - I used unity’s new input System to build touch and swipe detection for seamless player interactions. 
+  #### [Player Input Action Map Screenshot]
+  <img src="Screenshot 2025-01-19 225907.png" alt="Alt text" width="500" height="300">
+ 
+
+  #### [Mobile Game Screenshots]
 
 - #### Testing and Feedbacks:
-   - I did user tests to identify areas for upgrades, such as Swipe detection difficulties and leaderboard access.
-#### [User Testing Videos]
-https://youtu.be/7UuQ2rcpN-A
-  
-### Code Snippets 
-- Spawning Roads
+   - I did user tests to identify areas for upgrades, such as Swipe detection difficulties and leaderboard access. Whe n i game my game to play Students in uca they said Improve swipe system so before I use old input system after i change to unity new input system and its work nicely. Also i sent my game to my friends in Sri Lanka they Said add pause button and volume Mixer so after the feed back i fixed everything.
+  #### [User Testing Video]
+  https://youtu.be/7UuQ2rcpN-A
+  #### [LeaderBoard Testing Video]
+  https://www.youtube.com/watch?v=HpXlYbRmdug
+
+### Main Code Snippets 
+- #### RoadManager 
+  - Road Spawning 
 ```csharp
  private void SpawnRoad()
  {
@@ -72,13 +80,53 @@ https://youtu.be/7UuQ2rcpN-A
      spawnZ += roadLength;
      currentPrefabIndex = (currentPrefabIndex + 1) % prefabOrder.Length;
 ```
+ - Spawning Snow
+```csharp
+ private void SpawnSnowAboveRoad(GameObject road)
+{
+    Vector3 snowPosition = road.transform.position + new Vector3(0, 10, 0);
+    GameObject snow = Instantiate(snowPrefab, snowPosition, Quaternion.identity);
+
+    snow.transform.SetParent(road.transform);
+}
+```
+ - Cheching Roads and spawn
+```csharp
+ private void CheckRoadsAndSpawnNew()
+{
+    if (activeRoads.Count > 1)
+    {
+        GameObject secondRoad = activeRoads.ToArray()[1];
+        if (playerTransform.position.z > secondRoad.transform.position.z + roadLength)
+        {
+            DestroyFirstRoadAndSpawnNew();
+        }
+    }
+}
+
+```
+- Delete old Roads and generate new roads
+```csharp
+private void DestroyFirstRoadAndSpawnNew()
+{
+    GameObject firstRoad = activeRoads.Dequeue();
+    Destroy(firstRoad);
+    SpawnRoad();
+}
+
+```
 The roads and snow are spawned in an Endless Runner game plays a very important role in keeping the player on a continuous journey and creating a lively environment. Spawning roads helps to keep the player on a continuous journey, and adding elements like snow makes the environment look lively and attractive. Together, these two processes help to maintain the great experience in my velocity rush game. Accordingly, the way roads are spawned is a key component of the Endless Runner game, making the game seem like a long and continuous journey.
 
-- Score and Leaderboard manager
+- #### Score and Leaderboard manager
   
-  ```csharp
-  public class ScoreManager : MonoBehaviour
-  {
+ ```csharp
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Networking;
+using TMPro;
+
+public class M_ScoreManager : MonoBehaviour
+{
     // The current player's score
     public int Score { get; private set; }
 
@@ -185,7 +233,15 @@ The roads and snow are spawned in an Endless Runner game plays a very important 
 
         if (leaderboardText != null)
         {
-            leaderboardText.text = "Error submitting score: " + request.error;
+            if (request.error.Contains("HTTP"))
+            {
+                leaderboardText.text = "No Coins Collected! Try Again!";
+            }
+            else
+            {
+               
+                leaderboardText.text = "Error: " + request.error + "\nPlease try again!";
+            }
         }
     }
 
@@ -256,10 +312,34 @@ The roads and snow are spawned in an Endless Runner game plays a very important 
 
         return leaderboardDisplay;
     }
-  ``` 
-  In this code snippet I use my full code of the ScoreManager. Because this is the hardest part I done. ScoreMAnager is a method designed to implement a player score management and leaderboard system in Unity. Its main function is to control the player's score and send it to the server via API and retrieve the leaderboard. It makes it easy to send and receive data via JSON using UnityWebRequest. This class establishes a live and efficient interaction between the game and the web service, thereby providing the player with a user-friendly experience of manipulating the score and leaderboard system data. 
 
-  - flask api
+    // Restart the game and submit the score
+    public void RestartGame()
+    {
+        SubmitScore();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+    }
+}
+
+// Class representing a leaderboard entry (name and score)
+[System.Serializable]
+public class LeaderboardEntry
+{
+    public string name;
+    public int score;
+}
+
+// Class for the leaderboard response (array of entries)
+[System.Serializable]
+public class LeaderboardResponse
+{
+    public LeaderboardEntry[] leaderboardEntries;
+}
+
+  ``` 
+  In this code snippet I use my full code of the ScoreManager. Because this is the hardest part I done. ScoreMAnager is a method designed to implement a player score management and leaderboard system in Unity. Its main function is to control the player's score and send it to the server via API and retrieve the leaderboard. It makes it easy to send and receive data via JSON using UnityWebRequest. This class establishes a live and efficient interaction between the game and the web service, thereby providing the player with a user-friendly experience of manipulating the score and leaderboard system data. And I used chatgpt to create these code comments is its help to understand my code.
+
+- #### flask api
      
     ```python
     from flask import Flask, jsonify, request
@@ -300,6 +380,9 @@ The roads and snow are spawned in an Endless Runner game plays a very important 
     ```
     
     This is my Flask API, and I created it for the Endless Runner game in Unity. The main function of this API is to get the player name and score and post it to the API. In the Endless Runner game in Unity, this API is used to transmit the player name and score. In this Flask API, the /addscore method is implemented. Here, Unity sends the player name and score to the API using the POST method in JSON format. The API then receives that data and adds it to the scoreboard. Also, after the player name and score are successfully added by the API, the API returns a message in JSON format with the new score. The /leaderboard method in the API uses the GET method to get the current scoreboard of the game. This method shows the players who have the highest score after seeing their latest score. Here, the scoreboard data is sorted from top to bottom, giving Unity players details about their highest scores and latest standings. This Flask API is designed to be a system that can record the names and scores of players in the Unity Endless Runner game. Also, using the API, Unity players can easily adjust their scores and check the leaderboard.
+
+- #### Keyboard and Swipe Control
+
     
 ### Future Improvements
 
@@ -321,6 +404,9 @@ The roads and snow are spawned in an Endless Runner game plays a very important 
 
 
 
+
+ 
+  
 
  
   
