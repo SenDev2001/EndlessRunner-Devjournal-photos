@@ -44,15 +44,43 @@ Velocity Rush is a 3D endless runner game designed for android and webgl and itâ
   - I started by researching current endless runner games to learn about effective game mechanism. I concentrated on creating important gameplay elements such as player movement, swipe gestures, obstacle avoidance (add road barriers and busses), and snow partials.
   #### [Game Scene Screenshots] 
   - Menu Scene
+
+  <img src="Screenshot 2025-01-19 225658.png" alt="Alt text" width="800" height="350">
+ 
   - Game Scene
+
+   <img src="Screenshot 2025-01-19 225738.png" alt="Alt text" width="800" height="350">
 
 - #### Mobile & WEBGL/PC Controls: 
   - I used unityâ€™s new input System to build touch and swipe detection for seamless player interactions. 
   #### [Player Input Action Map Screenshot]
   <img src="Screenshot 2025-01-19 225907.png" alt="Alt text" width="500" height="300">
- 
+
 
   #### [Mobile Game Screenshots]
+  - Menu
+  
+  <img src="Screenshot_20250108-085525.png" alt="Alt text" width="250" >
+  <img src="Screenshot_20250108-085533.png" alt="Alt text" width="250" >
+  <img src="Screenshot_20250108-085538.png" alt="Alt text" width="250" >
+  
+  - Game
+
+  <img src="Screenshot_20250120-153116.png" alt="Alt text" width="250" >
+  <img src="Screenshot_20250120-153155.png" alt="Alt text" width="250" >
+  <img src="Screenshot_20250120-153322.png" alt="Alt text" width="250" >
+
+  - Pause & Audio
+
+  <img src="Screenshot_20250108-085606.png" alt="Alt text" width="250" >
+  <img src="Screenshot_20250108-085610.png" alt="Alt text" width="250" >
+
+  - Game Over And Leaderboard
+
+  <img src="Screenshot_20250108-114339.png" alt="Alt text" width="250" >
+  <img src="Screenshot_20250120-153131.png" alt="Alt text" width="250" >
+
+
 
 - #### Testing and Feedbacks:
    - I did user tests to identify areas for upgrades, such as Swipe detection difficulties and leaderboard access. Whe n i game my game to play Students in uca they said Improve swipe system so before I use old input system after i change to unity new input system and its work nicely. Also i sent my game to my friends in Sri Lanka they Said add pause button and volume Mixer so after the feed back i fixed everything.
@@ -339,7 +367,7 @@ public class LeaderboardResponse
   ``` 
   In this code snippet I use my full code of the ScoreManager. Because this is the hardest part I done. ScoreMAnager is a method designed to implement a player score management and leaderboard system in Unity. Its main function is to control the player's score and send it to the server via API and retrieve the leaderboard. It makes it easy to send and receive data via JSON using UnityWebRequest. This class establishes a live and efficient interaction between the game and the web service, thereby providing the player with a user-friendly experience of manipulating the score and leaderboard system data. And I used chatgpt to create these code comments is its help to understand my code.
 
-- #### flask api
+- #### Flask Api
      
     ```python
     from flask import Flask, jsonify, request
@@ -382,7 +410,68 @@ public class LeaderboardResponse
     This is my Flask API, and I created it for the Endless Runner game in Unity. The main function of this API is to get the player name and score and post it to the API. In the Endless Runner game in Unity, this API is used to transmit the player name and score. In this Flask API, the /addscore method is implemented. Here, Unity sends the player name and score to the API using the POST method in JSON format. The API then receives that data and adds it to the scoreboard. Also, after the player name and score are successfully added by the API, the API returns a message in JSON format with the new score. The /leaderboard method in the API uses the GET method to get the current scoreboard of the game. This method shows the players who have the highest score after seeing their latest score. Here, the scoreboard data is sorted from top to bottom, giving Unity players details about their highest scores and latest standings. This Flask API is designed to be a system that can record the names and scores of players in the Unity Endless Runner game. Also, using the API, Unity players can easily adjust their scores and check the leaderboard.
 
 - #### Keyboard and Swipe Control
+  - Swipe Handeling 
+```csharp
+private void DetectSwipe(bool enable = true)
+{
+    if (!enable)
+    {
+        swipeAction.Disable();
+        return;
+    }
 
+    swipeAction.Enable(); 
+
+    if (Time.time - lastSwipeTime < swipeCooldown) return;
+
+    swipeDelta = swipeAction.ReadValue<Vector2>();
+
+    if (swipeDelta.magnitude >= minimumSwipeDistance)
+    {
+        ProcessSwipe(swipeDelta);
+        swipeDelta = Vector2.zero;
+        lastSwipeTime = Time.time;
+    }
+}
+
+private void ProcessSwipe(Vector2 delta)
+{
+    if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+    {
+        if (delta.x > 0) MoveRight();
+        else MoveLeft();
+    }
+    else if (delta.y > 0) 
+    {
+        Jump();
+    }
+}
+
+```
+  - Keyboard Handeling 
+```csharp
+private void HandleKeyboardInput(bool enable = true)
+{
+    if (!enable)
+    {
+        keyboardAction.Disable(); 
+        return;
+    }
+
+    keyboardAction.Enable(); 
+
+    if (Time.time - lastKeyboardTime < keyboardCooldown) return;
+
+    Vector2 input = keyboardAction.ReadValue<Vector2>();
+
+    if (input.y > 0) Jump(); 
+    if (input.x < 0) MoveLeft(); 
+    if (input.x > 0) MoveRight(); 
+
+    lastKeyboardTime = Time.time; 
+}
+
+```
     
 ### Future Improvements
 
