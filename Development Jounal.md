@@ -4,7 +4,7 @@
  #### 2412587
 
 # VELOCITY RUSH
-- ### Game URL
+- ### Game URL: https://sendev2001.itch.io/velocity-rush
 - ### GitHub URL: https://github.com/SenDev2001/Game-Project.git
 - ### Gameplay Video:
 
