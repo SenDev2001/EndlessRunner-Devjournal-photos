@@ -472,8 +472,29 @@ private void HandleKeyboardInput(bool enable = true)
 }
 
 ```
+
     
 ### Future Improvements
+
+Future Improments ideas for my velocity rush game are as follows:
+
+- #### Adding Enemies
+  To increase the challenge of the game, enemies can be added. This makes it more challenging and competitive for the player.
+
+- #### Changeable Environment and Levels
+  By changing the environment and levels of the game, the player can have a new experience. Adding options such as new environments, mountains, and fire ascents makes the game more attractive.
+
+- #### New Equipment and Power-ups
+  By giving the player new powers or equipment, it helps in passing the challenges. This further increases the appeal and challenge of the game.
+
+- #### New Multiplayer and Online Competitions
+  As a new feature of the game, by adding a competition between online players, Sri Lankan and international players can play together.
+
+- #### New Sound and Music Themes
+  Adding new music and sound effects to game elements can provide an engaging experience for the player.
+
+- #### Leaderboard Development
+  Adding leaderboards can help players further hone their game skills. By giving the highest ranked players and rewards according to the leaderboard, more challenges and series can be added to the game.
 
 ## Bibliography 
 - Subway Surfers Case Study (s.d.) At: Unity Case Study - Subway Surfers (Accessed 03/12/2024).
