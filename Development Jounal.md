@@ -6,7 +6,7 @@
 # VELOCITY RUSH
 - ### Game URL: https://sendev2001.itch.io/velocity-rush
 - ### GitHub URL: https://github.com/SenDev2001/Game-Project.git
-- ### Gameplay Video:
+- ### Gameplay Video: https://youtu.be/yvwEWiiB-iQ?si=t5gZ_OtTzPvNIoCR
 
 ## INTRODUCTION
 Velocity Rush is a 3D endless runner game designed for android and webgl and it’s made for the winter season environment and player have run through road while snow falling and avoid obstacles and collecting coins also velocity rush has leaderboard system so players can see names and score what they got and whose got high score. And the highest score show in top in the leaderboard. 
