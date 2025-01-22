@@ -479,7 +479,14 @@ Future Improments ideas for my velocity rush game are as follows:
 - #### Leaderboard Development
   Adding leaderboards can help players further hone their game skills. By giving the highest ranked players and rewards according to the leaderboard, more challenges and series can be added to the game.
 
-  ## Import Assets 
+## Import Assets 
+- City Props Pack! | 3D Props | Unity Asset Store (s.d.) At: https://assetstore.unity.com/packages/3d/props/city-props-pack-153581 (Accessed  22/01/2025).
+- Metal and Concrete Barriers | 3D Exterior | Unity Asset Store (s.d.) At: https://assetstore.unity.com/packages/3d/props/exterior/metal-and-concrete-barriers-231794 (Accessed  22/01/2025).
+- Mobile Tree Package | 3D Trees | Unity Asset Store (s.d.) At: https://assetstore.unity.com/packages/3d/vegetation/trees/mobile-tree-package-18866 (Accessed  22/01/2025).
+- POLYGON office building | 3D Urban | Unity Asset Store (s.d.) At: https://assetstore.unity.com/packages/3d/environments/urban/polygon-office-building-82282 (Accessed  22/01/2025).
+- Mixamo (s.d.) At: https://www.mixamo.com/#/?page=1&type=Character (Accessed  22/01/2025).
+- Russian buildings pack | 3D Urban | Unity Asset Store (s.d.) At: https://assetstore.unity.com/packages/3d/environments/urban/russian-buildings-pack-113375 (Accessed  22/01/2025).
+   
 
 
 ## Bibliography 
