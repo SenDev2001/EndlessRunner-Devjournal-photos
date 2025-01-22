@@ -369,45 +369,65 @@ public class LeaderboardResponse
 
 - #### Flask Api
      
-    ```python
-    from flask import Flask, jsonify, request
-    from flask_cors import CORS
-    app = Flask(__name__)
-    CORS(app)
-    leaderboard = []
-    @app.route('/addscore', methods=['POST'])
-    def add_score():
+ ```python
+ from flask import Flask, jsonify, request
+from flask_cors import CORS
+
+app = Flask(__name__)
+
+# Enable CORS for all routes to allow cross-origin requests (e.g., from WebGL)
+CORS(app)
+
+# Sample leaderboard (You can replace this with a database)
+leaderboard = []
+
+# Disable caching on the server side (add Cache-Control headers)
+@app.after_request
+def add_cache_control(response):
+    response.cache_control.no_cache = True
+    response.cache_control.no_store = True
+    response.cache_control.must_revalidate = True
+    return response
+
+# Route to add a score to the leaderboard
+@app.route('/addscore', methods=['POST'])
+def add_score():
     data = request.get_json()  # Get the JSON data from the request
 
-    player_name = data.get('name')  # Get player name from the data
-    player_score = data.get('score')  # Get player score from the data
+    player_name = data.get('name')  # Get player name
+    player_score = data.get('score')  # Get player score
 
+    # Check if name and score are provided
     if not player_name or not player_score:
         return jsonify({"error": "Name and score are required"}), 400
 
     # Add the score to the leaderboard
     leaderboard.append({"name": player_name, "score": player_score})
 
-    # Optionally return the updated leaderboard with a success message
+    # Optionally, return the updated leaderboard along with a success message
     return jsonify({
         "message": "Score added successfully!",
         "player": player_name,
         "score": player_score,
         "leaderboard": leaderboard  # Return the current leaderboard
     })
-    @app.route('/leaderboard', methods=['GET'])
-    def get_leaderboard():
+
+# Route to get the leaderboard
+@app.route('/leaderboard', methods=['GET'])
+def get_leaderboard():
     # Sort the leaderboard by score in descending order
     sorted_leaderboard = sorted(leaderboard, key=lambda x: x['score'], reverse=True)
 
     # Return the sorted leaderboard as JSON
     return jsonify(sorted_leaderboard)
-    if __name__ == '__main__':
+
+if __name__ == '__main__':
     # Run the Flask app
     app.run(debug=True, host='0.0.0.0', port=5003)
-    ```
+ ```
     
-    This is my Flask API, and I created it for the Endless Runner game in Unity. The main function of this API is to get the player name and score and post it to the API. In the Endless Runner game in Unity, this API is used to transmit the player name and score. In this Flask API, the /addscore method is implemented. Here, Unity sends the player name and score to the API using the POST method in JSON format. The API then receives that data and adds it to the scoreboard. Also, after the player name and score are successfully added by the API, the API returns a message in JSON format with the new score. The /leaderboard method in the API uses the GET method to get the current scoreboard of the game. This method shows the players who have the highest score after seeing their latest score. Here, the scoreboard data is sorted from top to bottom, giving Unity players details about their highest scores and latest standings. This Flask API is designed to be a system that can record the names and scores of players in the Unity Endless Runner game. Also, using the API, Unity players can easily adjust their scores and check the leaderboard.
+   
+This is my Flask API, and I created it for the Endless Runner game in Unity. The main function of this API is to get the player name and score and post it to the API. In the Endless Runner game in Unity, this API is used to transmit the player name and score. In this Flask API, the /addscore method is implemented. Here, Unity sends the player name and score to the API using the POST method in JSON format. The API then receives that data and adds it to the scoreboard. Also, after the player name and score are successfully added by the API, the API returns a message in JSON format with the new score. The /leaderboard method in the API uses the GET method to get the current scoreboard of the game. This method shows the players who have the highest score after seeing their latest score. Here, the scoreboard data is sorted from top to bottom, giving Unity players details about their highest scores and latest standings. This Flask API is designed to be a system that can record the names and scores of players in the Unity Endless Runner game. Also, using the API, Unity players can easily adjust their scores and check the leaderboard.
 
 - #### Keyboard and Swipe Control
   - Swipe Handeling 
