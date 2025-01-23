@@ -55,11 +55,11 @@ Velocity Rush is a 3D endless runner game designed for android and webgl and itâ
   - I used unityâ€™s new input System to build touch and swipe detection for seamless player interactions. 
   #### [Player Input Action Map Screenshot]
   <img src="Screenshot 2025-01-19 225907.png" alt="Alt text" width="500" height="300">
-
+![alt text](Untitled-1.png)
 
   #### [Mobile Game Screenshots]
   - Menu
-  
+  ![alt text](<Screenshot 2025-01-23 221656.png>)
   <img src="Screenshot_20250108-085525.png" alt="Alt text" width="250" >
   <img src="Screenshot_20250108-085533.png" alt="Alt text" width="250" >
   <img src="Screenshot_20250108-085538.png" alt="Alt text" width="250" >
