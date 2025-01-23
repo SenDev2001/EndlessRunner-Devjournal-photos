@@ -90,8 +90,10 @@ Velocity Rush is a 3D endless runner game designed for android and webgl and itâ
   https://www.youtube.com/watch?v=HpXlYbRmdug
 
 ### Main Code Snippets 
-- #### RoadManager 
-  - Road Spawning 
+- #### RoadManager
+  
+  - Road Spawning
+    
 ```csharp
  private void SpawnRoad()
  {
@@ -102,13 +104,13 @@ Velocity Rush is a 3D endless runner game designed for android and webgl and itâ
      road.transform.position = new Vector3(0, 0, spawnZ);
 
      SpawnSnowAboveRoad(road);
-
      activeRoads.Enqueue(road);
-
      spawnZ += roadLength;
      currentPrefabIndex = (currentPrefabIndex + 1) % prefabOrder.Length;
 ```
+
  - Spawning Snow
+   
 ```csharp
  private void SpawnSnowAboveRoad(GameObject road)
 {
@@ -118,7 +120,9 @@ Velocity Rush is a 3D endless runner game designed for android and webgl and itâ
     snow.transform.SetParent(road.transform);
 }
 ```
+
  - Cheching Roads and spawn
+   
 ```csharp
  private void CheckRoadsAndSpawnNew()
 {
@@ -131,9 +135,10 @@ Velocity Rush is a 3D endless runner game designed for android and webgl and itâ
         }
     }
 }
-
 ```
+
 - Delete old Roads and generate new roads
+  
 ```csharp
 private void DestroyFirstRoadAndSpawnNew()
 {
@@ -141,8 +146,8 @@ private void DestroyFirstRoadAndSpawnNew()
     Destroy(firstRoad);
     SpawnRoad();
 }
-
 ```
+
 The roads and snow are spawned in an Endless Runner game plays a very important role in keeping the player on a continuous journey and creating a lively environment. Spawning roads helps to keep the player on a continuous journey, and adding elements like snow makes the environment look lively and attractive. Together, these two processes help to maintain the great experience in my velocity rush game. Accordingly, the way roads are spawned is a key component of the Endless Runner game, making the game seem like a long and continuous journey.
 
 - #### Score and Leaderboard manager
@@ -322,9 +327,8 @@ public class LeaderboardResponse
 {
     public LeaderboardEntry[] leaderboardEntries;
 }
+  ```
 
-
-  ``` 
   In this code snippet I use my full code of the ScoreManager. Because this is the hardest part I done. ScoreMAnager is a method designed to implement a player score management and leaderboard system in Unity. Its main function is to control the player's score and send it to the server via API and retrieve the leaderboard. It makes it easy to send and receive data via JSON using UnityWebRequest. This class establishes a live and efficient interaction between the game and the web service, thereby providing the player with a user-friendly experience of manipulating the score and leaderboard system data. And I used chatgpt to create these code comments is its help to understand my code.
 
 - #### Flask Api
@@ -386,14 +390,14 @@ def get_leaderboard():
 if __name__ == '__main__':
     # Run the Flask app
     app.run(debug=True, host='0.0.0.0', port=5003)
-
  ```
-    
-   
+      
 This is my Flask API, and I created it for the Endless Runner game in Unity. The main function of this API is to get the player name and score and post it to the API. In the Endless Runner game in Unity, this API is used to transmit the player name and score. In this Flask API, the /addscore method is implemented. Here, Unity sends the player name and score to the API using the POST method in JSON format. The API then receives that data and adds it to the scoreboard. Also, after the player name and score are successfully added by the API, the API returns a message in JSON format with the new score. The /leaderboard method in the API uses the GET method to get the current scoreboard of the game. This method shows the players who have the highest score after seeing their latest score. Here, the scoreboard data is sorted from top to bottom, giving Unity players details about their highest scores and latest standings. This Flask API is designed to be a system that can record the names and scores of players in the Unity Endless Runner game. Also, using the API, Unity players can easily adjust their scores and check the leaderboard.
 
 - #### Keyboard and Swipe Control
-  - Swipe Handeling 
+  
+  - Swipe Handeling
+    
 ```csharp
 private void DetectSwipe(bool enable = true)
 {
@@ -429,9 +433,10 @@ private void ProcessSwipe(Vector2 delta)
         Jump();
     }
 }
-
 ```
-  - Keyboard Handeling 
+
+  - Keyboard Handeling
+    
 ```csharp
 private void HandleKeyboardInput(bool enable = true)
 {
@@ -453,15 +458,12 @@ private void HandleKeyboardInput(bool enable = true)
 
     lastKeyboardTime = Time.time; 
 }
-
 ```
 ### Reflections
+
 When starting this project I had no knowledge of how the leaderboard system worked or how to set it up properly.  But, I was able to learn from scratch.  It gave me the opportunity to learn a lot.  First I had auto-learning done.  It helped me learn a lot.  I got a lot of help from my  two lecturers and friend who gave me a lot of advice and guidance.  First of all I had no experience of using GitHub, but learning it from the beginning I was able to understand its workings well.  I was able to plan carefully what to do first and what to finish when setting up work management.
-
  Then, I didn't have basic knowledge about touch input system.  But in this project I got the opportunity to learn it and gain experience in operating the touch input system.  and  how works unity new input system.
-
  This is my first published mobile game, and finishing it was a great experience for me.  At every step I was able to learn new things, adopt new coding skills and methods.
-
  The things learned from this project will be very useful for me in future projects.
     
 ### Future Improvements
