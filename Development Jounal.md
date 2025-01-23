@@ -455,7 +455,14 @@ private void HandleKeyboardInput(bool enable = true)
 }
 
 ```
+### Reflections
+When starting this project I had no knowledge of how the leaderboard system worked or how to set it up properly.  But, I was able to learn from scratch.  It gave me the opportunity to learn a lot.  First I had auto-learning done.  It helped me learn a lot.  I got a lot of help from my  two lecturers and friend who gave me a lot of advice and guidance.  First of all I had no experience of using GitHub, but learning it from the beginning I was able to understand its workings well.  I was able to plan carefully what to do first and what to finish when setting up work management.
 
+ Then, I didn't have basic knowledge about touch input system.  But in this project I got the opportunity to learn it and gain experience in operating the touch input system.  and  how works unity new input system.
+
+ This is my first published mobile game, and finishing it was a great experience for me.  At every step I was able to learn new things, adopt new coding skills and methods.
+
+ The things learned from this project will be very useful for me in future projects.
     
 ### Future Improvements
 
